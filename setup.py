@@ -29,9 +29,4 @@ setup(
         "click",
         "requests",
     ],
-    entry_points={
-        "console_scripts": [
-            "project_creator=project_creator.main:create_project",
-        ],
-    },
 )
