@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="mlcookiecutter",
-    version="1.0.0",
+    version="1.1.0",
     author="sarag5",
     author_email="sabarinathan_96@proton.me",
     description="A tool to create project structures for ml/data",
