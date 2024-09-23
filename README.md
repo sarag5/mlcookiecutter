@@ -28,11 +28,11 @@ pip install -e .
 Usage
 To create a new project structure, use the command line interface:
 ```bash
-project_creator --project_name <your_project_name> --license_type <license_type> --codeowners <comma_separated_owners>
+mlcookiecutter --project_name <your_project_name> --license_type <license_type> --codeowners <comma_separated_owners>
 ```
 Example
 ```bash
-project_creator --project_name my_data_project --license_type mit --codeowners user1@example.com,user2@example.com
+mlcookiecutter --project_name my_data_project --license_type mit --codeowners user1@example.com,user2@example.com
 ```
 This command will create a new directory called my_data_project with the following structure:
 ```text
