@@ -52,6 +52,8 @@ my_data_project/
 ├── models/
 ├── scripts/
 ├── deployment/
+├── .github/
+│   └── workflows/
 ├── .gitignore
 ├── LICENSE
 ├── README.md
