@@ -21,7 +21,7 @@ def get_license_content(license_type):
 @click.option('--project_name', prompt='Enter project name', default='default_project', help='Name of the project')
 @click.option('--license_type', prompt='Enter license type (e.g., mit, apache-2.0)', default='mit', help='Type of license')
 @click.option('--codeowners', prompt='Enter CODEOWNERS (comma-separated)', default='', help='CODEOWNERS for the project')
-def create_project(project_name, license_type, codeowners):
+def mlcookiecutter(project_name, license_type, codeowners):
     base_dir = os.path.join(os.getcwd(), project_name)
     
     # Create main project directory
@@ -234,4 +234,4 @@ See the [CODEOWNERS](CODEOWNERS) file for the list of contributors.
     click.echo(f"Project structure created in {base_dir}")
 
 if __name__ == "__main__":
-    create_project()
+    mlcookiecutter()
