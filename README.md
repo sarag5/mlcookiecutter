@@ -75,6 +75,37 @@ To see all available tasks, run:
 ```bash
 invoke --list
 ```
+
+## GitHub Workflows
+
+This project includes several GitHub workflows to ensure code quality and proper ML practices:
+
+---
+
+### Test and Lint
+
+- Triggered on every push and pull request
+- Runs the test suite using pytest
+- Checks code style using flake8
+
+---
+
+### ML Model Validation
+
+- Triggered when changes are made to the model code or data
+- Runs model training and validation scripts
+
+---
+
+### Data Quality Check
+
+- Triggered when changes are made to the data files
+- Runs data quality checks to ensure data integrity
+
+---
+
+These workflows help maintain code quality, ensure proper testing, and validate both the model and data throughout the development process.
+
 ## Contributing
 Contributions are welcome! Please feel free to submit issues or pull requests.
 
