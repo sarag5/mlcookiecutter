@@ -130,8 +130,3 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 See the CODEOWNERS file for the list of contributors.
 
----
-
-## Acknowledgments
-
-Inspired by various open-source projects that aim to streamline project setup. Thanks to all contributors for their valuable input!
