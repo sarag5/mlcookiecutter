@@ -59,29 +59,46 @@ my_data_project/
 ├── CODEOWNERS
 └── tasks.py
 ```
-Available Tasks
+## Available Tasks
 This project uses Invoke to manage various tasks. Here are the available tasks:
+```
 run_locally: Run the project locally.
 run_tests: Run the test suite.
 run_lint: Run the linter (flake8).
 run_build: Run the build process.
 check_format: Check the code formatting.
 correct_format: Correct the code formatting.
+```
+
 To see all available tasks, run:
+
 ```bash
 invoke --list
 ```
-Contributing
+## Contributing
 Contributions are welcome! Please feel free to submit issues or pull requests.
-Fork the repository.
-Create your feature branch (git checkout -b feature/YourFeature).
-Commit your changes (git commit -m 'Add some feature').
-Push to the branch (git push origin feature/YourFeature).
-Open a pull request.
-License
+
+## Fork the repository.
+
+1. Create your feature branch: `git checkout -b feature/YourFeature`
+2. Commit your changes: `git commit -m 'Add some feature'`
+3. Push to the branch: `git push origin feature/YourFeature`
+4. Open a pull request
+
+---
+
+## License
+
 This project is licensed under the MIT License - see the LICENSE file for details.
-Contributors
+
+---
+
+## Contributors
+
 See the CODEOWNERS file for the list of contributors.
-Acknowledgments
-Inspired by various open-source projects that aim to streamline project setup.
-Thanks to all contributors for their valuable input!
+
+---
+
+## Acknowledgments
+
+Inspired by various open-source projects that aim to streamline project setup. Thanks to all contributors for their valuable input!
