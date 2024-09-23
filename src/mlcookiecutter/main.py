@@ -17,6 +17,90 @@ def get_license_content(license_type):
     else:
         return "Failed to fetch license. Please add manually."
 
+def create_github_workflows(base_dir):
+    workflows_dir = os.path.join(base_dir, ".github", "workflows")
+    create_directory(workflows_dir)
+
+    # Test and Lint Workflow
+    test_lint_workflow = """name: Test and Lint
+
+on: [push, pull_request]
+
+jobs:
+  test-lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Run tests
+      run: pytest
+    - name: Run lint
+      run: flake8 src/ tests/
+"""
+    create_file(os.path.join(workflows_dir, "test-lint.yml"), test_lint_workflow)
+
+    # ML Model Validation Workflow
+    ml_validation_workflow = """name: ML Model Validation
+
+on:
+  push:
+    paths:
+      - 'src/model/**'
+      - 'data/**'
+
+jobs:
+  validate-model:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Train and validate model
+      run: |
+        python src/model/train_model.py
+        python src/model/validate_model.py
+"""
+    create_file(os.path.join(workflows_dir, "ml-validation.yml"), ml_validation_workflow)
+
+    # Data Quality Check Workflow
+    data_quality_workflow = """name: Data Quality Check
+
+on:
+  push:
+    paths:
+      - 'data/**'
+
+jobs:
+  check-data-quality:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Run data quality checks
+      run: python src/data_engineering/check_data_quality.py
+"""
+    create_file(os.path.join(workflows_dir, "data-quality.yml"), data_quality_workflow)
+    
 @click.command()
 @click.option('--project_name', prompt='Enter project name', default='default_project', help='Name of the project')
 @click.option('--license_type', prompt='Enter license type (e.g., mit, apache-2.0)', default='mit', help='Type of license')
@@ -26,7 +110,7 @@ def mlcookiecutter(project_name, license_type, codeowners):
     
     # Create main project directory
     create_directory(base_dir)
-    
+    create_github_workflows(base_dir)
     # Create subdirectories
     directories = [
         "data/raw",
@@ -68,6 +152,9 @@ def mlcookiecutter(project_name, license_type, codeowners):
         "tests/data_engineering/test_data_processor.py": "import unittest\nfrom src.data_engineering.data_processor import process_data\n\nclass TestDataProcessor(unittest.TestCase):\n    def test_process_data(self):\n        # Add your test cases here\n        pass",
         "tests/model/test_model.py": "import unittest\nfrom src.model.model import train_model\n\nclass TestModel(unittest.TestCase):\n    def test_train_model(self):\n        # Add your test cases here\n        pass",
         "models/.gitkeep": "",
+        "src/model/train_model.py": "# Add your model training code here\n",
+        "src/model/validate_model.py": "# Add your model validation code here\n",
+        "src/data_engineering/check_data_quality.py": "# Add your data quality check code here\n",
         "scripts/run_pipeline.sh": "#!/bin/bash\n\n# Add your pipeline execution commands here\necho \"Running data processing...\"\n# python -m src.data_engineering.data_processor\n\necho \"Running feature engineering...\"\n# python -m src.feature_engineering.feature_creator\n\necho \"Training model...\"\n# python -m src.model.model",
         "deployment/Dockerfile": "FROM python:3.9-slim\n\nWORKDIR /app\n\nCOPY requirements.txt .\nRUN pip install --no-cache-dir -r requirements.txt\n\nCOPY . .\n\nCMD [\"python\", \"-m\", \"src.model.model\"]"
     }
@@ -77,7 +164,7 @@ def mlcookiecutter(project_name, license_type, codeowners):
     
     # Create other necessary files
     create_file(os.path.join(base_dir, ".gitignore"), "*.pyc\n__pycache__\n.ipynb_checkpoints\n")
-    create_file(os.path.join(base_dir, "requirements.txt"), "pandas\nnumpy\nscikit-learn\nmatplotlib\njupyter\nrequests\ninvoke\nblack\nflake8\npytest")
+    create_file(os.path.join(base_dir, "requirements.txt"), "pandas\nnumpy\nscikit-learn\nmatplotlib\njupyter\nrequests\ninvoke\nblack\nflake8\npytest\npytest-cov\ngreat-expectations")
     
     # Create LICENSE file
     license_content = get_license_content(license_type)
