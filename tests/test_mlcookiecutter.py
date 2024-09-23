@@ -2,7 +2,7 @@ import os
 import tempfile
 import shutil
 from click.testing import CliRunner
-from src.mlcookiecutter.main import create_project
+from src.mlcookiecutter.main import mlcookiecutter
 
 def test_create_project():
     runner = CliRunner()
