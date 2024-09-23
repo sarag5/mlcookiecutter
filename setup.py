@@ -5,13 +5,13 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="mlcookiecutter",
-    version="0.1.0",
+    version="1.0.0",
     author="sarag5",
     author_email="sabarinathan_96@proton.me",
     description="A tool to create project structures for ml/data",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/sarag5/MLCookiecutter",
+    url="https://github.com/sarag5/mlcookiecutter",
     package_dir={"": "src"},
     packages=find_packages(where="src"),
     classifiers=[
