@@ -139,21 +139,21 @@ Add your project description here.
 To set up the project environment:
 
 1. Clone the repository:
-
+```bash
 git clone https://github.com/yourusername/{project_name}.git
 cd {project_name}
-
+```
 
 2. Create a virtual environment (optional but recommended):
-
+```bash
 python -m venv venv
 source venv/bin/activate # On Windows, use venv\\Scripts\\activate
-
+```
 
 3. Install the required packages:
-
+```bash
 pip install -r requirements.txt
-
+```
 
 ## Available Tasks
 
@@ -196,7 +196,7 @@ invoke --list
 
 ## Project Structure
 
-
+```text
 {project_name}/
 ├── data/
 │ ├── raw/
@@ -219,7 +219,7 @@ invoke --list
 ├── requirements.txt
 ├── CODEOWNERS
 └── tasks.py
-
+```
 
 ## License
 
